@@ -1,0 +1,359 @@
+/* General */
+
+html {
+	font-size: 10px;
+}
+
+body {
+	font-size: 1.4rem;
+	font-family: 'Helvetica', sans-serif;
+	margin: 0rem;
+}
+
+li {
+	list-style: none;
+}
+
+button {
+	padding: 0.8rem 1rem;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	background: rgb(243, 243, 243);
+	border-radius: 0.5rem;
+	font-weight: bold;
+	color: rgb(58, 58, 58);
+}
+
+input[type=text] {
+	font-size: 1.5rem;
+    box-sizing: border-box;
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid rgb(204, 204, 204);
+    margin-bottom: 2rem;
+}
+
+input[type=checkbox] {
+	margin-right: 1rem;
+}
+
+input[type="checkbox"]:checked {
+    content: "x";
+}
+
+label {
+	display: block;
+	font-weight: 700;
+}
+
+.light {
+	color: rgb(120, 120, 120);
+}
+
+/* App Layout & Menu */
+
+.app-wrap {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+}
+
+.menu {
+	flex: 0 0 auto;
+	background: rgb(243, 243, 243);
+	padding: 2rem 4rem;
+	box-sizing: border-box;
+	font-size: 1.5rem;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 28rem; /* setting an initial flex value of 28rem does not work when the element position is set to fixed */
+}
+
+.menu-content-wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.filter-wrap {
+	display: block;
+}
+
+.menu p, .menu label {
+	color: rgb(58, 58, 58);
+}
+
+.menu p {
+	margin: 0rem 0rem 1rem 0rem;
+}
+
+.menu label {
+	margin-bottom: 1.1rem;
+}
+
+.more-button {
+	margin-top: auto;
+	background: rgb(255, 255, 255);
+	text-align: center;
+	padding: 1.4rem;
+	cursor: pointer;
+	color: rgb(0, 0, 238);
+}
+
+.more-link {
+	cursor: pointer;
+	color: rgb(0, 0, 238);
+	display: none;
+	padding: 1.4rem;
+	margin: 1rem auto;
+	width: max-content;
+}
+
+.main {
+	flex: 1 1 auto;
+	margin: 3rem 3rem 3rem 31rem;
+}
+
+/* Movie Cards */
+
+.movie {
+	border: 0.1rem solid rgb(155, 155, 155);
+	border-radius: 1rem 0rem;
+	padding: 2rem;
+	background: rgb(238, 238, 238);
+	min-height: 19rem;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.truncate {
+	width: 100%;
+	height: 3.2rem;
+	line-height: 1.6rem;
+	display: flex;
+	align-items: center;
+	font-weight: 700;
+}
+
+.movie p, .movie .truncate {
+	margin: 0rem 0rem 0.5rem 0rem;
+}
+
+.movie .location {
+	margin-top: 1rem;
+}
+
+.movie span {
+	display: block;
+}
+
+.movie .comma {
+	display: none;
+}
+
+.movie a {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	padding-top: 0.5rem;
+	clear: both;
+}
+
+/* Loading Animation */
+
+.loading {
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.loader {
+	border: 1rem solid rgb(243, 243, 243);
+	border-radius: 50%;
+	border-top: 1rem solid rgb(55, 75, 235);
+	width: 3rem;
+	height: 3rem;
+	margin: auto;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* Modal */
+
+.modal-screen {
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+    align-items: center;
+}
+
+.modal {
+	width: 50%;
+	text-align: center;
+	margin: auto;
+	border-radius: 1rem;
+	padding: 4rem 2rem 2rem 2rem;
+	background: rgb(255, 255, 255);
+	box-sizing: border-box;
+	box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+	color: rgb(58, 58, 58);
+	font-weight: bold;
+}
+
+.modal-footer {
+	text-align: right;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 62em) {
+	.app-wrap {
+		flex-direction: column;
+	}
+
+	.main {
+		margin-left: 3rem;
+	}
+
+	.menu {
+		flex: 0 0 auto;
+		width: auto;
+		padding-bottom: 1rem;
+		position: static;
+	}
+
+	.menu-content-wrap {
+		display: block;
+	}
+
+	.filter-wrap {
+		display: inline-block;
+	}
+
+	.menu h1 {
+		text-align: center;
+		margin-bottom: 3.2rem;
+	}
+
+	input[type=text] {
+		width: 50%;
+		margin: 0;
+	}
+
+	.menu label {
+		display: inline-block;
+		margin: 0rem 0rem 0rem 2.9rem;
+	}
+
+	.menu p {
+		display: inline-block;
+		min-width: 7rem;
+		margin: 0rem 0rem 0rem 2.9rem;
+	}
+
+	.more-button {
+		display: none;
+	}
+
+	.more-link {
+		display: block;
+	}
+
+	.movie {
+		min-height: 11.6rem;
+	}
+
+	.movie-content-wrap {
+		height: 3.2rem;
+	}
+
+	.movie .location {
+		display: none;
+	}
+
+	.movie .year {
+		display: inline-block;
+		line-height: 3.2rem;
+		float: right;
+	}
+
+	.movie .truncate {
+		width: 75%;
+		float: left;
+	}
+
+	.movie span {
+		display: inline-block;
+		float: left;
+		color: rgb(120, 120, 120);;
+	}
+
+	.movie .comma {
+		display: inline-block;
+	}
+}
+
+@media only screen and (max-width: 48em) {
+	input[type=text] {
+		width: 100%;
+		margin: 0rem 0rem 2rem 0rem;
+	}
+
+	.menu {
+		padding: 2rem 2rem 1rem 2rem;
+	}
+
+	.menu h1 {
+		font-size: 1.5em;
+	}
+
+	.menu label {
+		float: left;
+		margin: 0rem 0rem 1rem 0rem;
+	}
+
+	.filter-wrap {
+		float: right;
+		margin-bottom: 1rem;
+	}
+
+	.main {
+		margin: 3rem 1rem;
+	}
+
+	.movie {
+		min-height: 13.7rem;
+	}
+
+	.movie .year {
+		display: block;
+		line-height: 1.6rem;
+		float: none;
+	}
+
+	.movie .truncate {
+		width: 100%;
+	}
+}
