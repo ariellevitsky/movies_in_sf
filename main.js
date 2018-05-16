@@ -179,11 +179,14 @@ Vue.component('movie-browser', {
 				}
 			})
 			.catch((error) => {
-				if(error) {
+				if(error.response) {
 					this.handleError(error.response.status);
 				}
-				else {
+				else if(error.message === 'Network Error') {
 					this.handleError('networkError');
+				}
+				else {
+				  this.handleError('unknown');
 				}
 			});
 
