@@ -109,7 +109,7 @@ label {
 	display: none;
 	padding: 1.4rem;
 	margin: 1rem auto;
-	width: max-content;
+	width: 6rem;
 }
 
 .main {
@@ -135,8 +135,6 @@ label {
 	width: 100%;
 	height: 3.2rem;
 	line-height: 1.6rem;
-	display: flex;
-	align-items: center;
 	font-weight: 700;
 }
 
@@ -300,6 +298,7 @@ label {
 	}
 
 	.movie .truncate {
+		display: inline-block;
 		width: 75%;
 		float: left;
 	}

@@ -163,6 +163,24 @@ Vue.component('movie-browser', {
 			})
 			.then((moviesWithLocation) => {
 				this.movies = this.movies.concat(moviesWithLocation);
+				return 'moviesLoaded';
+			})
+			.then((isSuccess) => {
+				if(isSuccess == 'moviesLoaded') {
+					this.offset += 25;
+					this.loading = false;
+
+					//Ellipsis (ellipsis can only be added once the elements have been rendered on the page)
+
+					let titlesToTruncate = document.querySelectorAll('.truncate');
+
+					titlesToTruncate.forEach(function(item, index) {
+						let ellipsis = new Ellipsis(item);
+
+						ellipsis.calc();
+						ellipsis.set();
+					});
+				}
 			})
 			.catch((error) => {
 				if(error) {
@@ -171,23 +189,8 @@ Vue.component('movie-browser', {
 				else {
 					this.handleError('networkError');
 				}
-			})
-			.finally(() => {
-				this.offset += 25;
-				this.loading = false;
-
-				//Ellipsis (ellipsis can only be added once the elements have been rendered on the page)
-
-				let titlesToTruncate = document.querySelectorAll('.truncate');
-
-				titlesToTruncate.forEach(function(item, index) {
-					let ellipsis = new Ellipsis(item);
-
-					ellipsis.calc();
-					ellipsis.set();
-				});
-
 			});
+
 		},
 		getLocation(location) {
 			return this.axiosLocationDefault.get('', {
