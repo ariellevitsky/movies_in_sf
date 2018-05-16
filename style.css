@@ -136,6 +136,8 @@ label {
 	height: 3.2rem;
 	line-height: 1.6rem;
 	font-weight: 700;
+	display: flex;
+	align-items: center;
 }
 
 .movie p, .movie .truncate {
@@ -298,7 +300,6 @@ label {
 	}
 
 	.movie .truncate {
-		display: inline-block;
 		width: 75%;
 		float: left;
 	}
