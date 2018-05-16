@@ -93,24 +93,20 @@ Vue.component('movie-browser', {
 			if(type == 'initialLoad' || type == 'loadMore') { //Avoid checking for sort/search parameters if it is the initial load or we are loading the next page
 				customParams = this.currentParams;
 			}
-			else { //Check if sorting is enabled
-				if(this.sortByYear && this.sortByTitle) {
-					customParams.params.$order = 'release_year,title';
-				}
-				else if(this.sortByYear || this.sortByTitle) {
-					if(this.sortByYear) {
-						customParams.params.$order = 'release_year'; 		
-					}
-					else if(this.sortByTitle) {
-						customParams.params.$order = 'title'; 	
-					}
-				}
-				else {
-					customParams = { params: { $order: ':id' } }
-				}
-			}
+			else if(this.sortByYear && this.sortByTitle) {
+                customParams.params.$order = 'release_year,title';
+            }
+            else if(this.sortByYear) {
+                customParams.params.$order = 'release_year';
+            }
+            else if(this.sortByTitle) {
+                customParams.params.$order = 'title'; 	
+            }
+            else {
+                customParams = { params: { $order: ':id' } }
+            }
 
-			if(this.searchValue && this.searchValue != '') { //Add a search query if one exists
+			if(this.searchValue !== '') { //Add a search query if one exists
 				customParams.params.$select = '*';
 
 				const searchValue = this.searchValue.trim().toLowerCase();
@@ -183,11 +179,14 @@ Vue.component('movie-browser', {
 				}
 			})
 			.catch((error) => {
-				if(error) {
+				if(error.response) {
 					this.handleError(error.response.status);
 				}
-				else {
+				else if(error.message === 'Network Error') {
 					this.handleError('networkError');
+				}
+				else {
+				  this.handleError('unknown');
 				}
 			});
 
