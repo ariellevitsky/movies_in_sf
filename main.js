@@ -106,7 +106,7 @@ Vue.component('movie-browser', {
                 customParams = { params: { $order: ':id' } }
             }
 
-			if(this.searchValue && this.searchValue != '') { //Add a search query if one exists
+			if(this.searchValue !== '') { //Add a search query if one exists
 				customParams.params.$select = '*';
 
 				const searchValue = this.searchValue.trim().toLowerCase();
